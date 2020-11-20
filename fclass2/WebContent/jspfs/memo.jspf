@@ -1,0 +1,39 @@
+<%@page import="gdb.Cdb"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+ <h2  style="color:palevioletred;  font-weight: bold;">메모</h2>
+     <br>         
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>MEMO</th>
+      </tr>
+    </thead>
+    <tbody>
+<% 
+try{
+	//sql 
+String sql = "SELECT mycomment FROM mycomment_memo ORDER BY mycomment ASC";
+//쿼리실행 
+ResultSet rs = (new Cdb()).rtnResultSet(sql);
+
+while(rs.next()){
+	// rs.next : 행을 반복 출력할 행이 있는 true를 리턴하고 다음행이 false경우 리턴 x
+String mycomment = rs.getString("mycomment");
+%> 
+ <tr>
+<td><%=mycomment%></td>
+</tr>
+<%}
+} 
+catch(Exception e){
+//try에서 예외가 발생하면 호출되는 함수 
+System.out.printf("예외메세지 : %s \n", e.getMessage() );
+} %>
+
+ </tbody>
+  </table>
+   

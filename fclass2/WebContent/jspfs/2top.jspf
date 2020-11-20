@@ -1,0 +1,248 @@
+<%@page import="java.util.Objects"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>안주영 포트폴리오</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <style>
+  
+.navbar li a{
+    color: white;
+}
+
+.custom-toggler.navbar-toggler{
+background-color : white;
+border-radius: 60px;
+}
+
+.dropdown-item {
+color: black !important;}
+
+  .dropdown-menu
+  {color: black !important;}
+
+  .navbar {
+   background-color:  rgba(255, 52, 113, 0.808)}
+  
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+
+  
+ .youtube {
+
+  position: relative;
+  width: 100%;
+padding-bottom: 70.25%;
+
+}
+
+.youtube iframe {
+
+width: 100%;
+height: 400px;
+
+}
+  
+  .navbar-brand {
+  color: white; }
+
+.carousel-caption {
+  position: absolute;
+  width: auto;
+  margin-bottom: 160px;
+  text-align: center;
+  background-color: rgba(43, 43, 43, 0.316);
+}
+  
+ .links {
+ font-size: 20px; 
+ color: palevioletred;
+ 
+ }
+
+.btn {
+border: 2px solid palevioletred; 
+background-color: rgba(0,0,0,0); 
+color: palevioletred; 
+padding: 5px;
+}
+.img-thumbnail {
+position: responsive;
+}
+
+.cardReci{
+border: 1px solid palevioletred; 
+border-style: double; 
+border-radius: 20px;
+}
+
+.cardt {
+color:palevioletred; 
+font-weight: bold; 
+font-size: 20px;"
+}
+
+
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+  padding: 70px 25px;
+  width: 100%;
+  background: palevioletred;
+  text-align: center;
+}
+
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.month .prev {
+  float: left;
+  padding-top: 10px;
+}
+
+.month .next {
+  float: right;
+  padding-top: 10px;
+}
+
+.weekdays {
+  margin: 0;
+  padding: 10px 0;
+  background-color: whitesmoke;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 11%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  padding: 10px 0;
+  background: rgba(245, 245, 245, 0.637);
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 13.6%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:12px;
+  color: #777;
+}
+
+.days li .active {
+  padding: 5px;
+  background: palevioletred;
+  color: white !important
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="text-center" style="padding: 30px; background-color:white;">
+  <h1 style="color:palevioletred;  font-weight: bold; font-size: 80px;">집밥 레시피</h1>
+  <br />
+  <p style="color:palevioletred;  font-weight: bold;">개인 레시피 정리용 사이트</p> 
+</div>
+
+<nav class="navbar navbar-expand-sm sticky-top">
+  <a class="navbar-brand" href="#">
+    <img src="/fclass2/imgs/cooking.png" style="width: 30px;" title="don't give up!">
+  </a>
+  <button class="custom-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    <% 
+     //로그인 시 마이 홈 / admin 로그인시 admin 홈 
+    Object login2 = session.getAttribute("login");
+    System.out.println("login:" + login2);
+    String strlog= null;
+    
+    System.out.println(!Objects.isNull(login2) );  	
+    
+    if(!Objects.isNull(login2)&&login2.equals("ok")){
+    	Object userid = session.getAttribute("userid");
+   	  // 출력
+   	 strlog = "<a class='navbar-brand' href='bootmain_mypage.jsp'>MyHome</a>";
+   	  out.write(strlog);
+    } else if (!Objects.isNull(login2)&&login2.equals("yes")){
+    	 strlog = "<a class='navbar-brand' href='bootmain_adminpage.jsp'>AdminHome</a>";
+      	  out.write(strlog);
+    }
+    else {
+    	strlog = "<a class='navbar-brand' href='/fclass2/bootmain/bootmain2.jsp'>Home</a>";
+    	 out.write(strlog);} %>
+    </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+           Notice
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/fclass2/bootmain/about.jsp">About</a>
+          <a class="dropdown-item" href="/fclass2/bootmain/Loginform2.jsp">Login</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          My recipe
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/fclass2/bootmain/myrecipe1.jsp">A dish</a>
+          <a class="dropdown-item" href="/fclass2/bootmain/myrecipe2.jsp">Season</a>
+          <a class="dropdown-item" href="/fclass2/bootmain/myrecipe3.jsp">Side dish</a>
+        </div>
+      </li>
+    </ul> 
+  </div>
+   <%
+// 일반 로그인시 로그아웃 출력, admin 로그인시 로그아웃과 admin_list 출력
+  Object login = session.getAttribute("login");
+  System.out.println("login:" + login);  
+  String strlog1 = null;
+  //로그인지 아닌지 확인 
+  System.out.println(!Objects.isNull(login) );
+  System.out.println("strlog1 : " + strlog1);
+  if(!Objects.isNull(login) && login.equals("ok") && !login.equals("yes")){
+	  System.out.println("strlog1 : " + strlog1);
+	  //로그인인 경우
+	  // 아이디 가져오기 
+	  Object userid = session.getAttribute("userid");
+	  // 출력
+	strlog1 = "<a class='navbar-brand' href='/fclass2/bootmain/logout2.jsp'>LOGOUT</a>";
+	  out.write(strlog1);
+  } else if (!Objects.isNull(login) && login.equals("yes")){
+	  strlog1 = "<a class='navbar-brand' href='/fclass2/bootmain/logout2.jsp'>LOGOUT</a><a class='navbar-brand' href='/fclass2/bootmain/list_login2.jsp'>Admin_list</a>";
+	  out.write(strlog1);
+  } else {System.out.println("strlog1 : " + strlog1);}
+  %>
+</nav>

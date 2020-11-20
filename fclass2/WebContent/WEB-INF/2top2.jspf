@@ -1,0 +1,147 @@
+
+<%@page import="java.util.Objects"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>타이틀</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  
+.navbar li a{
+    color: white;
+}
+
+.dropdown-item {
+color: black !important;}
+
+  .dropdown-menu
+  {color: black !important;}
+
+  .navbar {
+   background-color: rgba(255, 0, 179, 0.725)}
+  
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .logbtn {
+   background-color: rgba(255, 0, 179, 0.725);
+   color: white;
+   }
+  
+ .youtube {
+
+  position: relative;
+  width: 100%;
+padding-bottom: 56.25%;
+
+}
+
+.youtube iframe {
+
+  position: absolute;
+width: 100%;
+height: 100%;
+
+}
+  
+  .navbar-brand {
+  color: white; }
+  
+  
+  </style>
+</head>
+<body>
+
+<div class="text-center" style="padding: 30px;">
+  <h1>My First Bootstrap 4 Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+
+<nav class="navbar navbar-expand-sm sticky-top">
+  <a class="navbar-brand" href="#">
+    <img src="/fclass2/imgs/bunny.png" style="width: 30px;" title="don't give up!">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+    <li class="nav-item">
+    <% 
+    Object login2 = session.getAttribute("login");
+    System.out.println("login:" + login2);
+    if(!Objects.isNull(login2) && login2.equals("ok")){
+    	 Object userid = session.getAttribute("userid");
+   	  // 출력
+   	  String strlog = "<a class='navbar-brand' href='bootmain_mypage.jsp'>MyHome</a>";
+   	  out.write(strlog);
+    } else {String strlog = "<a class='nav-link navbar-brand' href='/fclass2/bootmain/bootmain2.jsp'>Home</a>";} %>
+    </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+           Notice
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/fclass2/bootmain/about.jsp">About</a>
+          <a class="dropdown-item" href="#">Notice</a>
+
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Review
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Food</a>
+          <a class="dropdown-item" href="#">Exercise</a>
+          <a class="dropdown-item" href="#">Board</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Sale</a>
+          <a class="dropdown-item" href="/fclass2/bootmain/exer.jsp">Exercise</a>
+        </div>
+      </li>
+    </ul>
+  </div>  
+   <%
+  /* 로그인시 로그아웃 링크 출력 
+  session(점속): jsp의 로그인 담당. 로그인한 대상의 ip나 
+  session 객체 login 변수를 만듦: 로그인하면 ok바뀜 */
+  Object login = session.getAttribute("login");
+  System.out.println("login:" + login);
+  //로그인지 아닌지 확인 
+  if(!Objects.isNull(login) && login.equals("ok") && !login.equals("ok2")){
+	  //로그인인 경우
+	  // 아이디 가져오기 
+	  Object userid = session.getAttribute("userid");
+	  // 출력
+	  String strlog = "<a class='navbar-brand' href='logout2.jsp'>LOGOUT</a>";
+	  out.write(strlog);
+  } else if(login.equals("ok2")){
+	  
+	String strlog = "<a class='navbar-brand' href='logout2.jsp'>LOGOUT</a><a class='navbar-brand' href='list_login2.jsp'>Admin list</a>";
+	out.write(strlog);
+	  } 
+  
+
+  %>
+</nav>
